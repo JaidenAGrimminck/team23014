@@ -70,6 +70,7 @@ function Counter({ num, last, reverse, noRightMargin }) {
     )
 }
 
+
 export default function Home() {
     return (
         <>
