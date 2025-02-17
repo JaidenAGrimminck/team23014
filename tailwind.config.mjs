@@ -11,6 +11,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        rubikMonoOne: ["var(--font-rubik-mono-one)"],
+        kronaOne: ["var(--font-krona-one)"],
+      }
     },
   },
   plugins: [],
