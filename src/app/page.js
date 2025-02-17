@@ -17,7 +17,7 @@ const rubikMonoOne = Rubik_Mono_One({
     weight: "400",
 });
 
-function Counter({ num, last, reverse }) {
+function Counter({ num, last, reverse, noRightMargin }) {
     const ref = React.useRef(null);
     
     const digitHeight = 52; // matches the actual height of each span
@@ -30,7 +30,7 @@ function Counter({ num, last, reverse }) {
     return (
         <div ref={ref} style={{
             height: "52px",
-        }} className={`text-4xl ${last ? "md:" : ""}mr-4 bg-white p-2 text-black ${rubikMonoOne.className} flex flex-col w-px-46.6 overflow-hidden`}>
+        }} className={`text-4xl ${noRightMargin ? "" : `${last ? "md:" : ""}mr-4`} bg-white p-2 text-black ${rubikMonoOne.className} flex flex-col w-px-46.6 overflow-hidden`}>
             <div
                 className="transition-transform duration-1000"
                 style={{ transform: `` }}
@@ -90,15 +90,6 @@ export default function Home() {
                         <Image className="ml-10" src="/season-logo.png" width={2502 / 20} height={2884 / 20} alt="Into The Deep"></Image>
                     </div>
                     <div className="flex flex-col md:flex-row justify-center items-center">
-                        <div className="flex flex-row justify-center items-center md:mr-2">
-                            <Counter num={2} />
-                            <Counter num={6} last={true} />
-                        </div>
-                        <div className={`text-2xl mt-3 md:mt-0 text-white ${kronaOne.className}`}>
-                            outreach events
-                        </div>
-                    </div>
-                    <div className="flex flex-col md:flex-row justify-center items-center mt-8">
                         <div className="flex flex-row justify-center items-center">
                             <div className={`text-2xl text-white ${kronaOne.className} mr-4`}>
                                 #
@@ -119,6 +110,15 @@ export default function Home() {
                     <div className="flex flex-col md:flex-row justify-center items-center mt-8">
                         <div className={`text-2xl text-white ${kronaOne.className} text-center w-1/2 md:w-3/4`}>
                             2x INSPIRE Award Winners
+                        </div>
+                    </div>
+                    <div className="flex flex-col md:flex-row justify-center items-center mt-8">
+                        <div className="flex flex-row justify-center items-center md:mr-2">
+                            <Counter num={2} noRightMargin={true} />
+                            <Counter num={6} last={true} />
+                        </div>
+                        <div className={`text-2xl mt-3 md:mt-0 text-white ${kronaOne.className}`}>
+                            outreach events
                         </div>
                     </div>
                     <div className="mt-[20px] md:mt-[0px] md:hidden md:w-1/2 flex-col justify-center items-center flex">
