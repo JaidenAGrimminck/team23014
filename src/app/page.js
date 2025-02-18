@@ -4,6 +4,8 @@ import React from "react";
 import { Geist, Geist_Mono, Krona_One, Rubik_Mono_One } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import styles from "./home.modules.css"
+import Slideshow from "@/modules/Slideshow";
 
 const kronaOne = Krona_One({
     variable: "--font-krona-one",
@@ -30,7 +32,7 @@ function Counter({ num, last, reverse, noRightMargin }) {
     return (
         <div ref={ref} style={{
             height: "52px",
-        }} className={`text-4xl ${noRightMargin ? "" : `${last ? "md:" : ""}mr-4`} bg-white p-2 text-black ${rubikMonoOne.className} flex flex-col w-px-46.6 overflow-hidden`}>
+        }} className={`text-4xl ${noRightMargin ? "" : `${last ? "md:" : ""}mr-[10px]`} bg-white p-2 text-black ${rubikMonoOne.className} flex flex-col w-px-46.6 overflow-hidden`}>
             <div
                 className="transition-transform duration-1000"
                 style={{ transform: `` }}
@@ -70,16 +72,55 @@ function Counter({ num, last, reverse, noRightMargin }) {
     )
 }
 
+function Split({ left, right, flipOnMobile }) {
+    return (
+        <div className="flex flex-col md:flex-row justify-center items-center mt-10">
+            <div className={`md:w-1/2 ${flipOnMobile ? `hidden` : ""} ${flipOnMobile ? `md:` : ""}flex flex-col justify-center items-center md:mr-10`}>
+                {left}
+            </div>
+            <div className="md:w-1/2 flex flex-col justify-center items-center mt-10 md:mt-0">
+                {right}
+            </div>
+            { flipOnMobile &&
+                <div className={`md:w-1/2 md:hidden flex flex-col justify-center items-center md:mr-10`}>
+                    {left}
+                </div>
+            }
+        </div>
+    )
+}
+
 
 export default function Home() {
+    const sld = 1 / 4;
+
+    //on scroll
+    const onScroll = () => {
+        const robotBg = document.getElementById("team-robot-bg");
+
+        //check if it's on screen
+        if (!robotBg) return;
+        //console.log(robotBg.getBoundingClientRect().top + robotBg.getBoundingClientRect().height)
+        if (robotBg.getBoundingClientRect().top + robotBg.getBoundingClientRect().height > 0) {
+            const scroll = window.scrollY;
+            robotBg.style.transform = `translateY(${-22 + (scroll * 0.18)}px)`;
+        }
+    }
+    
+    React.useEffect(() => {
+        window.addEventListener("scroll", onScroll);
+        onScroll();
+        return () => window.removeEventListener("scroll", onScroll);
+    })
+
     return (
         <>
-        <div className="container mx-auto">
+        <div className="container mx-auto scroll-smooth">
             {/* big image in the background */}
-            <Image priority={true} className="absolute hidden md:block select-none pointer-events-none" style={{
+            <Image priority={true} className="absolute hidden md:block select-none pointer-events-none scroll-smooth" style={{
                 top: "-22px",
                 left: "-260px"
-            }} width={1340} height={873} src="/robot.png" alt="Team Robot">
+            }} width={1340} height={873} src="/robot.png" id={"team-robot-bg"} alt="Team Robot">
                 
             </Image>
             <div className="flex flex-col md:flex-row md:h-screen">
@@ -133,12 +174,173 @@ export default function Home() {
                 <h1 className={`${rubikMonoOne.className} text-4xl md:text-6xl text-white text-center`}>THE FLYING DUTCHMAN</h1>
                 <h2 className={`${rubikMonoOne.className} text-2xl md:text-4xl md:mt-[10px] text-white text-center`}>TEAM 23014</h2>
                 <p className="mt-[20px] text-white text-center w-3/4 md:w-1/2">
-                    We are The Flying Dutchman, proudly representing The American School of The Hague in our second year of competing in the First Tech Challenge. Our team consists of 15 talented members from diverse countries, each specializing in building, programming, and operations, all working together to achieve success.
+                    We are <b>The Flying Dutchman</b>, proudly representing The American School of The Hague in our second year of competing in the First Tech Challenge. Our team consists of 15 talented members from diverse countries, each specializing in building, programming, and operations, all working together to achieve success.
                 </p>
                 <p className="mt-[20px] text-white text-center w-3/4 md:w-1/2">
-                We are dedicated to growing our team and inspiring the next generation to get involved in FIRST competitions within our community. To achieve this, we actively participate in school and local events, engaging with the community and sharing our passion for robotics.
+                    We are dedicated to growing our team and inspiring the next generation to get involved in FIRST competitions within our community. To achieve this, we actively participate in school and local events, engaging with the community and sharing our passion for robotics.
                 </p>
+            </div>
 
+            <div className="block mt-[0px] flex flex-col justify-center items-center">
+                {/* <h2 className={`${rubikMonoOne.className} text-3xl md:text-5xl md:mt-[10px] text-white text-center`}>OUR ROBOT</h2> */}
+                <div className="mt-[50px]">
+                    <h2 className={`${rubikMonoOne.className} text-xl md:text-3xl md:mt-[10px] text-white text-center`}>PRESENTING</h2>
+                    <div className="mt-[30px] flex flex-col justify-center items-center">
+                        <h1 className={`${rubikMonoOne.className} text-4xl md:text-6xl text-white text-center]`}>DELTA</h1>
+                        <div className="text-5xl md:text-7xl relative top-[-2.5rem] md:top-[-3.75rem]">
+                            <span style={{
+                                display: "inline-block",
+                                transform: "rotate(2.4deg) translateX(0px) translateY(-3px)",
+                            }}><span>「</span><span className="opacity-0 md:mr-[15px] md:ml-[15px]">DELTA</span><span>」</span></span>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div>
+                    <Slideshow maxWidth={1365 * sld} xpadding={20}>
+                        <Image src={"/robot/robot1.jpg"} width={1365 * sld} height={2048 * sld} alt="robot 1"></Image>
+                        <Image src={"/robot/robot2.jpg"} width={1365 * sld} height={2048 * sld} alt="robot 2"></Image>
+                        <Image src={"/robot/robot3.jpg"} width={1365 * sld} height={2048 * sld} alt="robot 3"></Image>
+                        <Image src={"/robot/robot4.jpg"} width={1365 * sld} height={2048 * sld} alt="robot 4"></Image>
+                        <Image src={"/robot/robot5.jpg"} width={1365 * sld} height={2048 * sld} alt="robot 5"></Image>
+                        <Image src={"/robot/robot6.jpg"} width={1365 * sld} height={2048 * sld} alt="robot 6"></Image>
+                    </Slideshow>
+                </div>
+                <div className={`mt-[10px] ${kronaOne.className} text-xs`}>
+                    <p>"<i>Delta</i>," our robot for <i>Into The Deep</i></p>
+                </div>
+                {/* sponosrs */}
+                <div>
+                    <h1 className={`${rubikMonoOne.className} text-xl md:text-3xl mt-[40px] text-white text-center`}>
+                        SPONSORS AND PARTNERS
+                    </h1>
+                    <div className="mt-[10px] text-white text-center mb-[200px]">
+                        [insert sponsors here]
+                    </div>
+                </div>
+            </div>
+            
+            <div className="block mt-[50px] flex flex-col justify-center items-center">
+                <div className="mt-[0px]">
+                    <h1 className={`${rubikMonoOne.className} text-xl md:text-3xl md:mt-[10px] text-white text-center`}>
+                        OUTREACH
+                    </h1>
+                </div>
+                <Split
+                    left={
+                        <div className="w-5/6">
+                            <h2 className={
+                                `${rubikMonoOne.className} text-2xl md:text-4xl text-white text-center mb-[10px]`
+                            }>After School Robotics</h2>
+                            <p>
+                            We designed and launched an engaging after-school robotics program for 14 kids from age 7-11 in our school. In the ten-week program, students delved into different aspects of robotics, no matter their prior experience:
+                            </p>
+                        </div>
+                    }
+
+                    right={
+                        <Image src="/outreach-1.png" width={1024 / 4} height={1024 / 4} alt="After School Robotics"></Image>
+                    }
+                />
+
+                <Split
+                    left={
+                        <Image src="/outreach-2.png" width={1024 / 4} height={1024 / 4} alt="After School Robotics"></Image>
+                    }
+
+                    right={
+                        <div className="w-5/6">
+                            <h2 className={
+                                `${rubikMonoOne.className} text-2xl md:text-4xl text-white text-center mb-[10px]`
+                            }>Expeditie NEXT</h2>
+                            <p>
+                            At the Expeditie NEXT Science Fair in Zutphen, we showcased our robot at the FIRST Tech Challenge booth to 1,200+ attendees. We gave young visitors the chance to control our robot on the FTC field. After the event, we joined fellow FTC and FRC teams for dinner, building relationships and exchanging ideas within the community.
+                            </p>
+                        </div>
+                    }
+
+                    flipOnMobile={true}
+                />
+
+                <Split
+                    left={
+                        <div className="w-5/6">
+                            <h2 className={
+                                `${rubikMonoOne.className} text-2xl md:text-4xl text-white text-center mb-[10px]`
+                            }>Nepal</h2>
+                            <p>
+                            In Nagarkot, Nepal, we spent a week at the Sanjeewani School teaching STEM concepts to kids aged 4–12. We engaged the students with fun, interactive activities such as exploring biology in nature and learning math through block games. These hands-on experiences introduced them to a new way of learning beyond textbooks. Our goal was to inspire the children with the spirit of STEM and education, enabling their curiosity and excitement for learning.
+                            </p>
+                        </div>
+                    }
+
+                    right={
+                        <Image src="/outreach-3.png" width={1024 / 4} height={1024 / 4} alt="After School Robotics"></Image>
+                    }
+                />
+
+                <Split
+                    left={
+                        <Image src="/outreach-4.png" width={1024 / 4} height={1024 / 4} alt="After School Robotics"></Image>
+                    }
+
+                    right={
+                        <div className="w-5/6">
+                            <h2 className={
+                                `${rubikMonoOne.className} text-2xl md:text-4xl text-white text-center mb-[10px]`
+                            }>Technische Universiteit Delft</h2>
+                            <p>
+                            We partook in the Delft Innovation Day, allowing kids to drive the robot in Minecraft along the game field. This was an amazing experience and invitation by TU Delft and was a great way to show off FIRST and FTC to the younger generations. 
+                            </p>
+                        </div>
+                    }
+
+                    flipOnMobile={true}
+                />
+                
+            </div>
+
+            <div className="block mt-[50px] flex flex-col justify-center items-center">
+                <div className="mt-[0px]">
+                    <h1 className={`${rubikMonoOne.className} text-xl md:text-3xl md:mt-[10px] text-white text-center`}>
+                        OUR SOFTWARE
+                    </h1>
+                </div>
+                <Split
+                    left={
+                        <div className="w-5/6">
+                            <h2 className={
+                                `${rubikMonoOne.className} text-2xl md:text-4xl text-white text-center mb-[10px]`
+                            }>jpather</h2>
+                            <p>
+                                One of our largest projects this season was creating an autonomous path visualizer from scratch that further enabled the modification of paths on the fly. The website also enables the sharing of paths between teams, thereby promoting advanced pathing within the FTC community. The visual overlay on the game field and the intuitive path creation tools make JPather an invaluable asset for both rookie and veteran teams aiming to optimize their autonomous routines.
+                            </p>
+                        </div>
+                    }
+
+                    right={
+                        <Image src="/software-1.png" width={1024 / 4} height={1024 / 4} alt="jpather"></Image>
+                    }
+                ></Split>
+
+                <Split
+                    left={
+                        <Image src="/software-2.png" width={1024 / 4} height={1024 / 4} alt="jpather"></Image>
+                    }
+
+                    right={
+                        <div className="w-5/6">
+                            <h2 className={
+                                `${rubikMonoOne.className} text-2xl md:text-4xl text-white text-center mb-[10px]`
+                            }>jscout</h2>
+                            <p>
+                                As part of our scouting, we made a platform that allowed us to rank opponents using an ELO system, predict how many points an alliance will score, and ultimately predict win chances for matches. This became a key tool in strategy, allowing us to create scouting reports of every team, enabling us to make informed choices for alliance selection. The algorithm boasts a more than 70% accuracy rate for the Benelux region, with a ~90% accuracy rate for our team in our regional.
+                            </p>
+                        </div>
+                    }
+
+                    flipOnMobile={true}
+                ></Split>
             </div>
         </div>
         <footer className="mt-10 text-white text-center pb-5 pt-5 bg-zinc-900 w-full">
