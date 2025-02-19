@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./home.modules.css"
 import Slideshow from "@/modules/Slideshow";
+import ImageHover from "@/modules/ImageHover";
 
 const kronaOne = Krona_One({
     variable: "--font-krona-one",
@@ -74,15 +75,15 @@ function Counter({ num, last, reverse, noRightMargin }) {
 
 function Split({ left, right, flipOnMobile }) {
     return (
-        <div className="flex flex-col md:flex-row justify-center items-center mt-10">
-            <div className={`md:w-1/2 ${flipOnMobile ? `hidden` : ""} ${flipOnMobile ? `md:` : ""}flex flex-col justify-center items-center md:mr-10`}>
+        <div className={`flex flex-col md:flex-row justify-center items-center mt-10 split`}>
+            <div className={`md:w-1/2 ${flipOnMobile ? `md:block` : "flex"}  ${flipOnMobile ? "hidden" : ""} flex-col justify-center items-center md:mr-10`}>
                 {left}
             </div>
             <div className="md:w-1/2 flex flex-col justify-center items-center mt-10 md:mt-0">
                 {right}
             </div>
             { flipOnMobile &&
-                <div className={`md:w-1/2 md:hidden flex flex-col justify-center items-center md:mr-10`}>
+                <div className={`md:w-1/2 md:hidden flex flex-col justify-center items-center md:mr-10 mt-[20px] md:mt-0`}>
                     {left}
                 </div>
             }
@@ -210,12 +211,43 @@ export default function Home() {
                     <p>"<i>Delta</i>," our robot for <i>Into The Deep</i></p>
                 </div>
                 {/* sponosrs */}
-                <div>
+                <div className="w-[100%]">
                     <h1 className={`${rubikMonoOne.className} text-xl md:text-3xl mt-[40px] text-white text-center`}>
                         SPONSORS AND PARTNERS
                     </h1>
-                    <div className="mt-[10px] text-white text-center mb-[200px]">
-                        [insert sponsors here]
+                    <div className="mt-[20px] text-white text-center flex flex-col justify-center items-center">
+                        <div className="flex flex-row justify-center items-center mt-[20px]">
+                            <a href="https://www.ash.nl/" target="_blank">
+                                <Image src={"/sponsors/ash_logo.png"} width={435} height={129} alt="American School of The Hague"></Image>
+                            </a>
+                        </div>
+                        <div className="flex flex-col md:flex-row mt-[20px] w-3/4 justify-around items-center">
+                            <a href="https://www.slideshare.net/" target="_blank">
+                                <Image src={"/sponsors/slideshare_logo.png"} width={1200 / 4} height={301 / 4} alt="Slideshare"></Image>
+                            </a>
+                            <a href="https://touchcast.com/" target="_blank">
+                                <Image src={"/sponsors/touchcast_logo.webp"} width={690 / 4} height={362 / 4} alt="Touchcast"></Image>
+                            </a>
+                        </div>
+                        <div className="flex flex-col md:flex-row md:mt-[50px] w-3/4 justify-around items-center">
+                            <a href="https://www.esa.int/" target="_blank">
+                                <Image src={"/sponsors/esa_logo.png"} className="md:mt-[20px]" width={2060 / 10 * 0.75} height={800 / 10 * 0.75} alt="ESA"></Image>
+                            </a>
+                            <a href="https://www.gobilda.com/" target="_blank">
+                                <Image src={"/sponsors/gobilda_logo.png"} className="mt-[20px]" width={900 / 5 * 0.75} height={385 / 5 * 0.75} alt="GoBIDLA"></Image>
+                            </a>
+                            <a href="https://www.autodesk.com/" target="_blank">
+                                <Image src={"/sponsors/autodesk_logo.png"} className="mt-[20px]" width={2560 / 10 * 0.75} height={282 / 10 * 0.75} alt="Autodesk"></Image>
+                            </a>
+                        </div>
+                        <div className="flex flex-col md:flex-row mt-[30px] md:mt-[50px] w-3/4 justify-around items-center">
+                            <a href="https://ascentsecure.com/" target="_blank">
+                                <Image src={"/sponsors/ascent_secure.webp"} className="md:mt-[20px]" width={2503 / 10 * 0.75} height={371 / 10 * 0.75} alt="ESA"></Image>
+                            </a>
+                            <a href="https://www.leidos.com/" target="_blank">
+                                <Image src={"/sponsors/leidos_logo.png"} className="mt-[20px]" width={2560 / 10 * 0.6} height={619 / 10 * 0.6} alt="GoBIDLA"></Image>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -239,13 +271,19 @@ export default function Home() {
                     }
 
                     right={
-                        <Image src="/outreach-1.png" width={1024 / 4} height={1024 / 4} alt="After School Robotics"></Image>
+                        <div className="flex flex-col justify-center items-center">
+                            <Image src="/outreach/as_robotics.jpeg" width={1024 / 2 * 0.8} height={1024 / 2 * 0.8} alt="After School Robotics"></Image>
+                        </div>
                     }
+
+                    height={2000 / 6}
                 />
 
                 <Split
                     left={
-                        <Image src="/outreach-2.png" width={1024 / 4} height={1024 / 4} alt="After School Robotics"></Image>
+                        <div className="flex flex-col justify-center items-center">
+                            <Image src="/outreach/next.jpg" width={1499 / 6} height={2000 / 6} alt="After School Robotics"></Image>
+                        </div>
                     }
 
                     right={
@@ -258,6 +296,8 @@ export default function Home() {
                             </p>
                         </div>
                     }
+
+                    height={2000 / 6}
 
                     flipOnMobile={true}
                 />
@@ -275,13 +315,17 @@ export default function Home() {
                     }
 
                     right={
-                        <Image src="/outreach-3.png" width={1024 / 4} height={1024 / 4} alt="After School Robotics"></Image>
+                        <Image src="/outreach/nepal.png" width={1382 / 3.5} height={790 / 3.5} alt="After School Robotics"></Image>
                     }
+
+                    height={2000 / 6}
                 />
 
                 <Split
                     left={
-                        <Image src="/outreach-4.png" width={1024 / 4} height={1024 / 4} alt="After School Robotics"></Image>
+                        <div className="flex flex-col justify-center items-center">
+                            <Image src="/outreach/delft.jpg" width={1024 / 2 * 0.8} height={1024 / 2* 0.8} alt="After School Robotics"></Image>
+                        </div>
                     }
 
                     right={
@@ -294,6 +338,8 @@ export default function Home() {
                             </p>
                         </div>
                     }
+
+                    height={2000 / 6}
 
                     flipOnMobile={true}
                 />
@@ -319,13 +365,25 @@ export default function Home() {
                     }
 
                     right={
-                        <Image src="/software-1.png" width={1024 / 4} height={1024 / 4} alt="jpather"></Image>
+                        <div className="flex flex-col justify-center items-center">
+                            <ImageHover href="https://jpather.autos" width={2188 / 4} height={1148 / 4}>
+                                <Image style={{
+                                    boxShadow: "2px 2px 10px rgba(255, 255, 255, 0.5)"
+                                }} src="/software/jpather.png" width={2188 / 4} height={1148 / 4} alt="jpather"></Image>
+                            </ImageHover>
+                        </div>
                     }
                 ></Split>
 
                 <Split
                     left={
-                        <Image src="/software-2.png" width={1024 / 4} height={1024 / 4} alt="jpather"></Image>
+                        <div className="flex flex-col justify-center items-center">
+                            <ImageHover href="http://jscout.jaiden.hackclub.app" width={2654 / 4} height={1254 / 4}>
+                                <Image style={{
+                                    boxShadow: "2px 2px 10px rgba(255, 255, 255, 0.5)"
+                                }} src="/software/jscout.png" width={2654 / 4} height={1254 / 4} alt="jscout"></Image>
+                            </ImageHover>
+                        </div>
                     }
 
                     right={
@@ -342,9 +400,23 @@ export default function Home() {
                     flipOnMobile={true}
                 ></Split>
             </div>
+                
+            
+            <div className="block mt-[75px] flex flex-row justify-center items-center">
+                
+                <Image className="mr-10" src="/team-logo.png" width={1024 / 4 * 0.75} height={1024 / 4 * 0.75} alt="Team Logo"></Image>
+                <Image className="ml-10" src="/season-logo.png" width={2502 / 10 * 0.75} height={2884 / 10 * 0.75} alt="Into The Deep"></Image>
+            </div>
+            <div className="mt-[30px] flex flex-row justify-center items-center">
+                <a href="https://www.instagram.com/team23014/" target="_blank">
+                    <Image className="" src="/icons/instagram.svg" width={32} height={32} alt="Instagram"></Image>
+                </a>
+            </div>
         </div>
         <footer className="mt-10 text-white text-center pb-5 pt-5 bg-zinc-900 w-full">
-            The Flying Dutchman © 2025
+            The Flying Dutchman © 2025 • Made by <a style={{
+                textDecoration: "underline"
+            }} href="https://github.com/JaidenAGrimminck">Jaiden</a>
         </footer>
         </>
     );

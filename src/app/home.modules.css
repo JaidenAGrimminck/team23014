@@ -3,3 +3,7 @@
     margin-right: 50px;
     margin-left: 50px;
 }
+
+.split img {
+    box-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
+}

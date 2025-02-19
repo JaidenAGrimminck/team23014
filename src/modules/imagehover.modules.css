@@ -1,0 +1,11 @@
+
+.image-hover > div:last-child{
+    opacity: 0;
+    transition: opacity 0.5s;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.image-hover > div:hover:last-child {
+    opacity: 1;
+}
