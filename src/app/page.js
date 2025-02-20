@@ -175,7 +175,7 @@ export default function Home() {
                 <h1 className={`${rubikMonoOne.className} text-4xl md:text-6xl text-white text-center`}>THE FLYING DUTCHMAN</h1>
                 <h2 className={`${rubikMonoOne.className} text-2xl md:text-4xl md:mt-[10px] text-white text-center`}>TEAM 23014</h2>
                 <p className="mt-[20px] text-white text-center w-3/4 md:w-1/2">
-                    We are <b>The Flying Dutchman</b>, proudly representing The American School of The Hague in our second year of competing in the First Tech Challenge. Our team consists of 15 talented members from diverse countries, each specializing in building, programming, and operations, all working together to achieve success.
+                    We are <b>The Flying Dutchman</b>, proudly representing The American School of The Hague in our second year of competing in the FIRST Tech Challenge. Our team consists of 15 talented members from diverse countries, each specializing in building, programming, and operations, all working together to achieve success.
                 </p>
                 <p className="mt-[20px] text-white text-center w-3/4 md:w-1/2">
                     We are dedicated to growing our team and inspiring the next generation to get involved in FIRST competitions within our community. To achieve this, we actively participate in school and local events, engaging with the community and sharing our passion for robotics.
