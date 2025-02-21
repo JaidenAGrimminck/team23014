@@ -157,8 +157,8 @@ export default function Home() {
                     </div>
                     <div className="flex flex-col md:flex-row justify-center items-center mt-8">
                         <div className="flex flex-row justify-center items-center md:mr-2">
-                            <Counter num={2} noRightMargin={true} />
-                            <Counter num={6} last={true} />
+                            <Counter num={4} noRightMargin={true} />
+                            <Counter num={3} last={true} />
                         </div>
                         <div className={`text-2xl mt-3 md:mt-0 text-white ${kronaOne.className}`}>
                             outreach events
@@ -171,16 +171,51 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
             <div className="block mt-[100px] md:mt-[250px] flex flex-col justify-center items-center">
-                <h1 className={`${rubikMonoOne.className} text-4xl md:text-6xl text-white text-center`}>THE FLYING DUTCHMAN</h1>
-                <h2 className={`${rubikMonoOne.className} text-2xl md:text-4xl md:mt-[10px] text-white text-center`}>TEAM 23014</h2>
-                <p className="mt-[20px] text-white text-center w-3/4 md:w-1/2">
-                    We are <b>The Flying Dutchman</b>, proudly representing The American School of The Hague in our second year of competing in the FIRST Tech Challenge. Our team consists of 15 talented members from diverse countries, each specializing in building, programming, and operations, all working together to achieve success.
-                </p>
-                <p className="mt-[20px] text-white text-center w-3/4 md:w-1/2">
-                    We are dedicated to growing our team and inspiring the next generation to get involved in FIRST competitions within our community. To achieve this, we actively participate in school and local events, engaging with the community and sharing our passion for robotics.
-                </p>
+                        <h1 className={`${rubikMonoOne.className} text-4xl md:text-6xl text-white text-center`}>THE FLYING DUTCHMAN</h1>
+                        <h2 className={`${rubikMonoOne.className} text-2xl md:text-4xl md:mt-[10px] text-white text-center`}>TEAM 23014</h2>
             </div>
+
+            <div>
+                <Split 
+                
+                left={
+                    <div className="block flex flex-col justify-center items-center">
+                        <p className="text-white text-center w-3/4 md:w-[100%]">
+                            We are <b>The Flying Dutchman</b>, proudly representing The American School of The Hague in our second year of competing in the FIRST Tech Challenge. Our team consists of 15 talented members from diverse countries, each specializing in building, programming, and operations, all working together to achieve success.
+                        </p>
+                        <p className="mt-[20px] text-white text-center w-3/4 md:w-[100%]">
+                            We are dedicated to growing our team and inspiring the next generation to get involved in FIRST competitions within our community. To achieve this, we actively participate in school and local events, engaging with the community and sharing our passion for robotics.
+                        </p>
+                        <p className="mt-[20px] text-white text-center w-3/4 md:w-[100%]">
+                            Our team is committed to promoting STEM education and fostering a love for robotics among students of all ages. We strive to make a positive impact on our community by sharing our knowledge and passion for robotics with others. We've participated in various outreach events, including after-school robotics programs, science fairs, and STEM workshops, to inspire the next generation of innovators.
+                        </p>
+                    </div>
+                }
+
+                right={
+                    <div className="block flex flex-col justify-center items-center">
+                        <div className="w-3/4 md:w-[100%]">
+                            {/* <h1 className={`${rubikMonoOne.className} text-2xl md:text-4xl mt-[40px] text-white text-center`}>
+                                OUR TEAM
+                            </h1> */}
+                            <p className=" text-white text-center">
+                                Our team is made up of a group of 15 diverse members from all corners of the world. Each member specializes in a different aspect of robotics, from building to programming to operations. Together, we work to achieve success in the FIRST Tech Challenge.
+                            </p>
+                        </div>
+                        <div className="mt-[20px]">
+                            <Image style={{
+                                boxShadow: "2px 2px 10px rgba(255, 255, 255, 0.5)"
+                            }} src="/team/team.jpg" width={5166 / 10} height={3444 / 10} alt="Team Photo"></Image>
+                        </div>
+                    </div>
+                }
+
+                />
+
+            </div>
+            
 
             <div className="block mt-[0px] flex flex-col justify-center items-center">
                 {/* <h2 className={`${rubikMonoOne.className} text-3xl md:text-5xl md:mt-[10px] text-white text-center`}>OUR ROBOT</h2> */}
@@ -197,7 +232,7 @@ export default function Home() {
                     </div>
                 </div>
                     
-                <div>
+                <div className="">
                     <Slideshow maxWidth={1365 * sld} xpadding={20}>
                         <Image src={"/robot/robot1.jpg"} width={1365 * sld} height={2048 * sld} alt="robot 1"></Image>
                         <Image src={"/robot/robot2.jpg"} width={1365 * sld} height={2048 * sld} alt="robot 2"></Image>
@@ -353,22 +388,6 @@ export default function Home() {
                     <h4 className={
                         `${rubikMonoOne.className} text-xl md:text-2xl text-white text-center mb-[10px]`
                     }>And much more!</h4>
-                </div>
-            </div>
-
-            <div className="block mt-[50px] flex flex-col justify-center items-center">
-                <div className="w-1/2">
-                    <h1 className={`${rubikMonoOne.className} text-2xl md:text-4xl mt-[40px] text-white text-center`}>
-                        OUR TEAM
-                    </h1>
-                    <p className="mt-[50px] text-white text-center">
-                        Our team is made up of a group of 15 diverse members from all corners of the world. Each member specializes in a different aspect of robotics, from building to programming to operations. Together, we work to achieve success in the FIRST Tech Challenge.
-                    </p>
-                </div>
-                <div className="mt-[50px]">
-                    <Image style={{
-                        boxShadow: "2px 2px 10px rgba(255, 255, 255, 0.5)"
-                    }} src="/team/team.jpg" width={5166 / 10} height={3444 / 10} alt="Team Photo"></Image>
                 </div>
             </div>
 
