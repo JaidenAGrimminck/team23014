@@ -343,7 +343,12 @@ export default function Home() {
 
                     flipOnMobile={true}
                 />
-                
+
+                <div className="flex flex-col justify-center items-center mt-[50px]">
+                    <h4 className={
+                        `${rubikMonoOne.className} text-xl md:text-2xl text-white text-center mb-[10px]`
+                    }>And much more!</h4>
+                </div>
             </div>
 
             <div className="block mt-[50px] flex flex-col justify-center items-center">
