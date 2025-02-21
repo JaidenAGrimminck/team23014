@@ -226,10 +226,15 @@ export default function Home() {
                                 <Image src={"/sponsors/slideshare_logo.png"} width={1200 / 4} height={301 / 4} alt="Slideshare"></Image>
                             </a>
                             <a href="https://touchcast.com/" target="_blank">
-                                <Image src={"/sponsors/touchcast_logo.webp"} width={690 / 4} height={362 / 4} alt="Touchcast"></Image>
+                                <Image src={"/sponsors/touchcast_logo.png"} width={690 / 4} height={362 / 4} alt="Touchcast"></Image>
                             </a>
                         </div>
-                        <div className="flex flex-col md:flex-row md:mt-[50px] w-3/4 justify-around items-center">
+                        <div className="flex flex-col md:flex-row mt-[10px] w-3/4 justify-around items-center">
+                            <a href="https://www.ghaasfoundation.org/" target="_blank">
+                                <Image src={"/sponsors/gene_haas_logo.png"} width={690 / 4} height={362 / 4} alt="Touchcast"></Image>
+                            </a>
+                        </div>
+                        <div className="flex flex-col md:flex-row md:mt-[10px] mt-[20px] w-3/4 justify-around items-center">
                             <a href="https://www.esa.int/" target="_blank">
                                 <Image src={"/sponsors/esa_logo.png"} className="md:mt-[20px]" width={2060 / 10 * 0.75} height={800 / 10 * 0.75} alt="ESA"></Image>
                             </a>
@@ -352,6 +357,22 @@ export default function Home() {
             </div>
 
             <div className="block mt-[50px] flex flex-col justify-center items-center">
+                <div className="w-1/2">
+                    <h1 className={`${rubikMonoOne.className} text-xl md:text-3xl mt-[40px] text-white text-center`}>
+                        OUR TEAM
+                    </h1>
+                    <p className="mt-[50px] text-white text-center">
+                        Our team is made up of a group of 15 diverse members from all corners of the world. Each member specializes in a different aspect of robotics, from building to programming to operations. Together, we work to achieve success in the FIRST Tech Challenge.
+                    </p>
+                </div>
+                <div className="mt-[50px]">
+                    <Image style={{
+                        boxShadow: "2px 2px 10px rgba(255, 255, 255, 0.5)"
+                    }} src="/team/team.jpg" width={5166 / 10} height={3444 / 10} alt="Team Photo"></Image>
+                </div>
+            </div>
+
+            <div className="block mt-[50px] flex flex-col justify-center items-center">
                 <div className="mt-[0px]">
                     <h1 className={`${rubikMonoOne.className} text-xl md:text-3xl md:mt-[10px] text-white text-center`}>
                         OUR SOFTWARE
@@ -406,7 +427,6 @@ export default function Home() {
                 ></Split>
             </div>
                 
-            
             <div className="block mt-[75px] flex flex-row justify-center items-center">
                 
                 <Image className="mr-10" src="/team-logo.png" width={1024 / 4 * 0.75} height={1024 / 4 * 0.75} alt="Team Logo"></Image>
