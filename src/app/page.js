@@ -134,10 +134,10 @@ export default function Home() {
                     </div>
                     <div className="flex flex-col md:flex-row justify-center items-center">
                         <div className="flex flex-row justify-center items-center">
-                            <div className={`text-2xl text-white ${kronaOne.className} mr-4`}>
+                            <div className={`text-2xl text-white ${kronaOne.className} mr-[8px]`}>
                                 #
                             </div>
-                            <div className="flex flex-row justify-center items-center md:mr-2">
+                            <div className="flex flex-row justify-center items-center md:mr-[3px]">
                                 <Counter num={1} last={true} reverse={true} />
                             </div>
                         </div>
@@ -156,13 +156,16 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="flex flex-col md:flex-row justify-center items-center mt-8">
-                        <div className="flex flex-row justify-center items-center md:mr-2">
+                        <div className="flex flex-row justify-center items-center md:mr-[4px]">
                             <Counter num={4} noRightMargin={true} />
                             <Counter num={3} last={true} />
                         </div>
                         <div className={`text-2xl mt-3 md:mt-0 text-white ${kronaOne.className}`}>
                             outreach events
                         </div>
+                    </div>
+                    <div className="hidden md:block flex flex-row justify-center items-center mt-8">
+                        <Image className="pulse-arrow" src="/icons/down-arrow.svg" width={64} height={64} alt="Down Arrow"></Image>
                     </div>
                     <div className="mt-[20px] md:mt-[0px] md:hidden md:w-1/2 flex-col justify-center items-center flex">
                         <Image className="md:hidden select-none pointer-events-none" src="/robot-cent.png" width={1340 * 0.9} height={873 * 0.9} alt="Team Robot Small">
