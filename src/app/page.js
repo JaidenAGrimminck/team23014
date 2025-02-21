@@ -358,7 +358,7 @@ export default function Home() {
 
             <div className="block mt-[50px] flex flex-col justify-center items-center">
                 <div className="w-1/2">
-                    <h1 className={`${rubikMonoOne.className} text-xl md:text-3xl mt-[40px] text-white text-center`}>
+                    <h1 className={`${rubikMonoOne.className} text-2xl md:text-4xl mt-[40px] text-white text-center`}>
                         OUR TEAM
                     </h1>
                     <p className="mt-[50px] text-white text-center">
