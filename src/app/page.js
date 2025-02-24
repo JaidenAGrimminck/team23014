@@ -73,7 +73,7 @@ function Counter({ num, last, reverse, noRightMargin }) {
     )
 }
 
-function Split({ left, right, flipOnMobile }) {
+export function Split({ left, right, flipOnMobile }) {
     return (
         <div className={`flex flex-col md:flex-row justify-center items-center mt-10 split`}>
             <div className={`md:w-1/2 ${flipOnMobile ? `md:block` : "flex"}  ${flipOnMobile ? "hidden" : ""} flex-col justify-center items-center md:mr-10`}>
@@ -137,7 +137,7 @@ export default function Home() {
                             <div className={`text-2xl text-white ${kronaOne.className} mr-[8px]`}>
                                 #
                             </div>
-                            <div className="flex flex-row justify-center items-center md:mr-[3px]">
+                            <div className="flex flex-row justify-center items-center md:mr-[8px]">
                                 <Counter num={1} last={true} reverse={true} />
                             </div>
                         </div>
@@ -156,7 +156,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="flex flex-col md:flex-row justify-center items-center mt-8">
-                        <div className="flex flex-row justify-center items-center md:mr-[4px]">
+                        <div className="flex flex-row justify-center items-center md:mr-[8px]">
                             <Counter num={4} noRightMargin={true} />
                             <Counter num={3} last={true} />
                         </div>
