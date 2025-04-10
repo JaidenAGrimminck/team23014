@@ -1,0 +1,97 @@
+
+.overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+
+    user-select: none;
+    pointer-events: none;
+}
+
+.overlay-content {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    user-select: all;
+    pointer-events:all;
+}
+
+.overlay-content > * {
+    margin: 0 10px;
+    
+}
+
+.svg-button {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.svg-button:hover {
+    background-color: #f0f0f0;
+}
+
+.playback-range {
+    -webkit-appearance: none;
+    background: transparent;
+    cursor: pointer;
+    width: 15rem;
+}
+
+.playback-range::-webkit-slider-runnable-track {
+    background: #053a5f;
+    height: 0.5rem;
+}
+
+/******** Firefox ********/
+.playback-range::-moz-range-track {
+    background: #053a5f;
+    height: 0.5rem;
+}
+
+.playback-range::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    background-color: #5cd5eb;
+    height: calc(2rem);
+    width: calc(2rem);
+
+    border-radius: 50%;
+}
+
+.playback-range:focus {
+    outline: none;
+}
+  
+  /***** Chrome, Safari, Opera, and Edge Chromium *****/
+.playback-range:focus::-webkit-slider-thumb {
+    border: 1px solid #053a5f;
+    outline: 1px solid #053a5f;
+}
+
+.playback-range::-webkit-slider-runnable-track {
+    background: #053a5f;
+    height: 2rem;
+    border-radius: 1rem;
+}
+
+.playback-controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
