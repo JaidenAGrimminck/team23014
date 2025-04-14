@@ -1,0 +1,22 @@
+
+.servo-list {
+
+}
+
+.servo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.servo > input {
+    color: black;
+    width: 100px;
+    text-align: center;
+}
+
+.servo-position-value {
+
+}

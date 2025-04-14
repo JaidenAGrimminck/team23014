@@ -21,6 +21,8 @@ const conversion = bounds / centerToEdgeDistance;
 // units / meters
 
 const loadFilesFromRobot = async (ip) => {
+    if (ip == "ignore") return;
+
     const req = await fetch(`http://${ip}:23014/list`);
     const text = await req.text();
     const files = text.split('\n');
@@ -33,6 +35,8 @@ const loadFilesFromRobot = async (ip) => {
 }
 
 const getFileFromRobot = async (ip, file) => {
+    if (ip == "ignore") return;
+    
     const req = await fetch(`http://${ip}:23014/get/${encodeURIComponent(file)}`);
     const text = await req.text();
     
@@ -275,6 +279,62 @@ const ThreeScene = () => {
     return <div ref={containerRef} />;
 }
 
+function FileMenu() {
+    const [files, setFiles] = React.useState([]);
+    
+    React.useEffect(() => {
+        //try and load ip from local storage
+        let ip = localStorage.getItem("ip");
+        if (ip == null) {
+            const newIp = prompt("Enter the IP address of the robot");
+            if (newIp) {
+                localStorage.setItem("ip", newIp);
+            }
+            ip = newIp;
+        }
+
+        loadFilesFromRobot(ip).then((files) => {
+            setFiles(files);
+        });
+    });
+
+    const editIp = () => {
+        const newIp = prompt("Enter the IP address of the robot");
+        if (newIp) {
+            localStorage.setItem("ip", newIp);
+        }
+    };
+
+    return (
+        <div className="fixed w-full h-full top-0 left-0 pointer-events-none select-none flex flex-col justify-center items-center z-10 bg-neutral-700 bg-opacity-50" id="file-menu">
+            {/* in the center */}
+            <div className='flex flex-col justify-center items-center w-[500px] h-[500px] bg-white rounded-lg shadow-lg text-neutral-900 pointer-events-auto select-auto'>
+                <div className='flex flex-col justify-center items-center w-full h-full'>
+                    <div className='flex flex-row justify-around items-center w-full h-[70px] bg-neutral-300 rounded-t-lg'>
+                        <h1 className='text-2xl font-bold'>Select a file</h1>
+                        <button className='text-neutral-900 bg-cyan-500 hover:bg-cyan-600 rounded-lg px-4 py-2' onClick={editIp}>Change IP</button>
+                    </div>
+                    <div className='flex flex-col justify-center items-center w-full h-full'>
+                        <div className='flex flex-col justify-center items-center w-full h-full'>
+                            {files.length > 0 && files.map((file, index) => {
+                                return (
+                                    <div key={index} className='flex flex-row justify-between items-center w-full h-[50px] px-4 border-b border-neutral-300'>
+                                        <h1 className='text-lg font-bold'>{file}</h1>
+                                        <button className='text-neutral-900 bg-cyan-500 hover:bg-cyan-600 rounded-lg px-4 py-2' onClick={() => getFileFromRobot(localStorage.getItem("ip"), file)}>Load</button>
+                                    </div>
+                                )
+                            })}
+                            {files.length == 0 && <div className='flex flex-col justify-center items-center w-full h-full'>
+                                <h1 className='text-xl font-bold'>No files found</h1>
+                            </div>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 export default function ReplayPage() {
 
     const togglePlay = () => {
@@ -298,7 +358,14 @@ export default function ReplayPage() {
         pauseSvg.style.display = 'none';
     }
 
+    const openFileMenu = () => {
+        const fileMenu = document.getElementById("file-menu");
+        fileMenu.style.display = 'block';
+    }
+
     return (
+        <>
+        <FileMenu />
         <div style={{
             width: '100%',
             height: '100%',
@@ -332,11 +399,12 @@ export default function ReplayPage() {
                         </div>
                     </div>
                     <input className={styles["playback-range"]} type='range' onChange={sliderAdj} onClick={sliderAdj}></input>
-                    <div className={styles["svg-button"]}>
+                    <div className={styles["svg-button"]} onClick={openFileMenu}>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>upload-circle-outline</title><path d="M8 17V15H16V17H8M16 10L12 6L8 10H10.5V14H13.5V10H16M12 2C17.5 2 22 6.5 22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2M12 4C7.58 4 4 7.58 4 12C4 16.42 7.58 20 12 20C16.42 20 20 16.42 20 12C20 7.58 16.42 4 12 4Z" /></svg>
                     </div>
                 </div>
             </div>
         </div>
+        </>
     )
 }
